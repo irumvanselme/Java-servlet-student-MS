@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="./styles/http_cdn.jsdelivr.net_npm_bootstrap@4.6.0_dist_css_bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-light vh-100 pt-5">
 <div class="container">
