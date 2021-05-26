@@ -55,15 +55,15 @@ public class StudentService extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
+        String firstName = request.getParameter("first_name");
         String gender = request.getParameter("gender");
         String email = request.getParameter("email");
         String year = request.getParameter("year");
         String className = request.getParameter("class");
 
 
-        StudentController controller = null;
+        StudentController controller;
         try {
             controller = new StudentController();
             int result = controller.create(firstName, lastName, gender, email, year, className);

@@ -33,7 +33,7 @@
                         <th>Gender</th>
                         <th>Year</th>
                         <th>Class</th>
-                        <th colspan="2">Action</th>
+                        <th colspan="3">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,6 +48,7 @@
                             <td><c:out value="${student.className}" /></td>
                             <td><a href="edit-student?id=${student.id}">Update</a></td>
                             <td><a href="students?action=DELETE&id=${student.id}" class="text-danger">Delete</a></td>
+                            <td><a href="view-student?id=${student.id}" class="text-info">Read More</a></td>
                         </tr>
                     </c:forEach>
                     </tbody>

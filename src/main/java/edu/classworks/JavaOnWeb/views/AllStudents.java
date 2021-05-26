@@ -18,13 +18,12 @@ import java.util.List;
 public class AllStudents extends HttpServlet {
 
     public void init() {
-        String message = "Hello World!";
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        StudentController controller = null;
+        StudentController controller;
         List<Student> students = new ArrayList<>();
 
         try {

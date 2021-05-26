@@ -33,7 +33,7 @@ public class EditStudent extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
@@ -42,7 +42,7 @@ public class EditStudent extends HttpServlet {
         String year = request.getParameter("year");
         String className = request.getParameter("class");
 
-        StudentController controller = null;
+        StudentController controller;
         try {
             controller = new StudentController();
             int result = controller.update(id, firstName, lastName, gender, email, year, className);
