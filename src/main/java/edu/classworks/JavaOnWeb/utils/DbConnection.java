@@ -1,4 +1,4 @@
-package edu.classworks.JavaOnWeb.config;
+package edu.classworks.JavaOnWeb.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class DbConnection {
 
         connection = DriverManager.getConnection(dbUrl, "root", "Rca@{123}");
         if (connection == null) {
-            System.out.println("Failed to connect to database ");
+            System.out.println("Failed to connect to database ....");
             System.exit(0);
         }
 

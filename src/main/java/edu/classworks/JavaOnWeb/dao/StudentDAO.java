@@ -1,6 +1,6 @@
 package edu.classworks.JavaOnWeb.dao;
 
-import edu.classworks.JavaOnWeb.config.DbConnection;
+import edu.classworks.JavaOnWeb.utils.DbConnection;
 import edu.classworks.JavaOnWeb.models.Student;
 
 import java.sql.*;
@@ -10,9 +10,7 @@ import java.util.List;
 public class StudentDAO {
     Connection connection;
 
-    public StudentDAO() throws SQLException {
-        connection = DbConnection.getConnection();
-    }
+    public StudentDAO() throws SQLException { connection = DbConnection.getConnection(); }
 
     protected void disconnect() throws SQLException {
         if (connection != null && !connection.isClosed()) {

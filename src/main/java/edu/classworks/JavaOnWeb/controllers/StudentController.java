@@ -1,38 +1,41 @@
 package edu.classworks.JavaOnWeb.controllers;
 
-import edu.classworks.JavaOnWeb.dao.StudentDAO;
+import edu.classworks.JavaOnWeb.dao.StudentDAOHibernate;
 import edu.classworks.JavaOnWeb.models.Student;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class StudentController {
-    private final StudentDAO dao;
+    private final StudentDAOHibernate daoHibernate;
 
     public StudentController() throws SQLException {
-        dao = new StudentDAO();
+        daoHibernate = new StudentDAOHibernate();
     }
 
     public List<Student> getStudents() throws SQLException {
-        return dao.getAll();
+        return daoHibernate.getAllStudent();
     }
 
     public Student getById(int id) throws SQLException {
-        return dao.show(id);
+        return daoHibernate.getStudent(id);
     }
 
     public int create(String firstName, String lastName, String gender, String email, String year, String className) throws SQLException {
-        return dao.create(new Student(firstName, lastName, gender, email , year, className));
+        daoHibernate.saveStudent(new Student(firstName, lastName, gender, email, year, className));
+        return 1;
     }
 
     public int update(int id, String firstName, String lastName, String gender, String email, String year, String className) throws SQLException {
         Student student = new Student(firstName, lastName, gender, email, year, className);
         student.setId(id);
-        return dao.update(student);
+        daoHibernate.updateStudent(student);
+        return 1;
     }
 
     public boolean delete(int id) throws SQLException {
-        Student student = new Student(id);
-        return dao.delete(student);
+        daoHibernate.deleteStudent(id);
+
+        return true;
     }
 }

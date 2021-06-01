@@ -17,7 +17,7 @@ public class ViewStudent extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         
-        StudentController controller = null;
+        StudentController controller;
         Student student = null;
         int studentId = Integer.parseInt(request.getParameter("id"));
 
@@ -29,11 +29,7 @@ public class ViewStudent extends HttpServlet {
         }
 
         if(student != null){
-            try {
-                request.setAttribute("student", controller.getById(studentId));
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            request.setAttribute("student", student);
             RequestDispatcher dispatcher = request.getRequestDispatcher("viewStudent.jsp");
             dispatcher.forward(request,response);
         }else{
