@@ -84,7 +84,7 @@ public class StudentDAO {
         statement.setString(4, student.getEmail());
         statement.setString(5, student.getYear());
         statement.setString(6, student.getClassName());
-        statement.setInt(7, student.getId());
+        statement.setLong(7, student.getId());
 
         int result = statement.executeUpdate();
         statement.close();
@@ -96,7 +96,7 @@ public class StudentDAO {
     public boolean delete(Student student) throws SQLException {
         String sql = "DELETE FROM students where id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, student.getId());
+        statement.setLong(1, student.getId());
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
 

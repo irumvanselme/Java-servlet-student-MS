@@ -1,6 +1,8 @@
 package edu.classworks.JavaOnWeb.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
@@ -9,7 +11,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column()
-    private int id;
+    private long id;
 
     @Column(nullable = false)
     private String firstName;
@@ -20,18 +22,23 @@ public class Student {
     @Column(nullable = false)
     private String gender;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String year;
 
     @Column(nullable = false, name = "class")
-    private String  className;
+    private String className;
 
-    public Student(){}
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(name = "students_beds", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "bed_id")})
+    private Set<Bed> beds = new HashSet<>();
 
-    public Student(int id){
+    public Student() {
+    }
+
+    public Student(long id) {
         this.id = id;
     }
 
@@ -44,11 +51,11 @@ public class Student {
         this.className = className;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -84,7 +91,7 @@ public class Student {
         this.email = email;
     }
 
-    public String  getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -98,5 +105,13 @@ public class Student {
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public Set<Bed> getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Set<Bed> beds) {
+        this.beds = beds;
     }
 }

@@ -2,6 +2,7 @@ package edu.classworks.JavaOnWeb.dao;
 
 import java.util.List;
 
+import edu.classworks.JavaOnWeb.models.Bed;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -131,5 +132,21 @@ public class StudentDAOHibernate {
             e.printStackTrace();
         }
         return listOfStudent;
+    }
+
+    public Long saveBed(Bed bed) {
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Long bedId= (Long) session.save(bed);
+            transaction.commit();
+            return bedId;
+        } catch (Exception e) {
+            e.printStackTrace();			if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return null;
     }
 }
