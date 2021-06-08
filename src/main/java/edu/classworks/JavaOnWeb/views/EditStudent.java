@@ -21,7 +21,7 @@ public class EditStudent extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int studentId = Integer.parseInt(request.getParameter("id"));
+        long studentId = Long.parseLong(request.getParameter("id"));
         try {
             request.setAttribute("student", controller.getById(studentId));
         } catch (SQLException throwable) {
@@ -34,7 +34,7 @@ public class EditStudent extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        long id = Long.parseLong(request.getParameter("id"));
         String firstName = request.getParameter("first_name");
         String lastName = request.getParameter("last_name");
         String gender = request.getParameter("gender");

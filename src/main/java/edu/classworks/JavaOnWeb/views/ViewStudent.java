@@ -19,7 +19,7 @@ public class ViewStudent extends HttpServlet {
         
         StudentController controller;
         Student student = null;
-        int studentId = Integer.parseInt(request.getParameter("id"));
+        long studentId = Long.parseLong(request.getParameter("id"));
 
         try {
             controller = new StudentController();

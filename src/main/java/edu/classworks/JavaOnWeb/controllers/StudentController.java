@@ -21,7 +21,7 @@ public class StudentController {
         return daoHibernate.getAllStudent();
     }
 
-    public Student getById(int id) throws SQLException {
+    public Student getById(long id) throws SQLException {
         return daoHibernate.getStudent(id);
     }
 
@@ -39,14 +39,14 @@ public class StudentController {
         return 1;
     }
 
-    public int update(int id, String firstName, String lastName, String gender, String email, String year, String className) throws SQLException {
+    public int update(long id, String firstName, String lastName, String gender, String email, String year, String className) throws SQLException {
         Student student = new Student(firstName, lastName, gender, email, year, className);
         student.setId(id);
         daoHibernate.updateStudent(student);
         return 1;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(long id) throws SQLException {
         daoHibernate.deleteStudent(id);
 
         return true;
