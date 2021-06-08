@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import edu.classworks.JavaOnWeb.models.Student;
 import edu.classworks.JavaOnWeb.utils.HibernateUtil;
 
@@ -22,7 +23,7 @@ public class StudentDAOHibernate {
             session.save(student);
             // commit transaction
             transaction.commit();
-            System.out.println(" New student added using hibernate okey");
+            System.out.println(" New student added using hibernate ok");
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -109,14 +110,14 @@ public class StudentDAOHibernate {
     /**
      * Get all Students
      *
-     * @return listOfStudet a list of students
+     * @return listOfStudent a list of students
      */
 
     @SuppressWarnings("unchecked")
     public List<Student> getAllStudent() {
         Transaction transaction = null;
         List<Student> listOfStudent = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an student object
