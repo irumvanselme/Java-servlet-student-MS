@@ -3,6 +3,7 @@ package edu.classworks.JavaOnWeb.utils;
 import java.util.Properties;
 
 import edu.classworks.JavaOnWeb.models.Bed;
+import edu.classworks.JavaOnWeb.models.BedAssignment;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -38,6 +39,7 @@ public class HibernateUtil {
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(Bed.class);
+                configuration.addAnnotatedClass(BedAssignment.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
                 System.out.println("Hibernate Java Config serviceRegistry created");
