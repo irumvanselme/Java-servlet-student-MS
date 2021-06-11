@@ -3,6 +3,7 @@ package edu.classworks.JavaOnWeb.dao;
 import java.util.List;
 
 import edu.classworks.JavaOnWeb.models.Bed;
+import edu.classworks.JavaOnWeb.models.BedAssignment;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,22 +16,24 @@ public class StudentDAOHibernate {
      *
      * @param student a student to be inserted into the database
      */
-    public void saveStudent(Student student) {
+    public long saveStudent(Student student) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // save the student object
-            session.save(student);
+            long id = (long) session.save(student);
             // commit transaction
             transaction.commit();
-            System.out.println(" New student added using hibernate ok");
+            return id;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
+
+        return 0;
     }
 
     /**
@@ -134,19 +137,34 @@ public class StudentDAOHibernate {
         return listOfStudent;
     }
 
-    public Long saveBed(Bed bed) {
-
+    public long  saveBed(Bed bed) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Long bedId= (Long) session.save(bed);
+            long id = (long) session.save(bed);
             transaction.commit();
-            return bedId;
+            return id;
         } catch (Exception e) {
-            e.printStackTrace();			if (transaction != null) {
+            e.printStackTrace();
+            if (transaction != null) {
                 transaction.rollback();
             }
         }
-        return null;
+        return 0;
+    }
+    public long  saveBedAssignment(BedAssignment bedAssignment) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            long id = (long) session.save(bedAssignment);
+            transaction.commit();
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+        return 0;
     }
 }

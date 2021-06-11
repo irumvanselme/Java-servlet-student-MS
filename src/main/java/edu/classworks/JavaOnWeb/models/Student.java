@@ -31,9 +31,12 @@ public class Student {
     @Column(nullable = false, name = "class")
     private String className;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinTable(name = "students_beds", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "bed_id")})
-    private Set<Bed> beds = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+//    @JoinTable(name = "students_beds", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "bed_id")})
+//    private Set<Bed> beds = new HashSet<>();
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private Set<BedAssignment> beds=new HashSet<BedAssignment>();
 
     public Student() {
     }
@@ -107,11 +110,11 @@ public class Student {
         this.className = className;
     }
 
-    public Set<Bed> getBeds() {
+    public Set<BedAssignment> getBeds() {
         return beds;
     }
 
-    public void setBeds(Set<Bed> beds) {
+    public void setBeds(Set<BedAssignment> beds) {
         this.beds = beds;
     }
 }

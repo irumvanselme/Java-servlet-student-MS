@@ -5,7 +5,8 @@
   Time: 11:23 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
+<jsp:useBean id="student" scope="request" type="edu.classworks.JavaOnWeb.models.Student"/>
 <html>
     <head>
         <title>Edit a Student</title>
@@ -65,8 +66,7 @@
                     </div>
                     <div class="mt-2">
                         <label for="year">Year</label>
-                        <select id="year" class="form-control bg-light" required name="year"
-                                value="${student.firstName == "Male"}">
+                        <select id="year" class="form-control bg-light" required name="year">
                             <option disabled selected> - select the year -</option>
                             <option value="Year 1" <c:if test="${student.year==\"Year 1\"}">selected="selected"</c:if>>
                                 Year 1
@@ -101,6 +101,10 @@
                     </div>
                 </form>
             </div>
+            <%
+                int k = 23;
+                System.out.println(k);
+            %>
         </div>
     </body>
 </html>

@@ -18,8 +18,8 @@ public class Bed {
     @Enumerated(EnumType.STRING)
     private BedType type;
 
-    @ManyToMany(mappedBy = "beds", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Student> students = new HashSet<>();
+    @OneToMany(mappedBy = "bed", fetch = FetchType.LAZY)
+    private Set<BedAssignment> students=new HashSet<>();
 
     public Bed() {
     }
@@ -53,11 +53,11 @@ public class Bed {
         this.type = type;
     }
 
-    public Set<Student> getStudents() {
+    public Set<BedAssignment> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(Set<BedAssignment> students) {
         this.students = students;
     }
 }
